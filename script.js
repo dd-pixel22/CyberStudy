@@ -1,467 +1,889 @@
 /* =========================================================
    CYBERSTUDY JAVASCRIPT
-   ========================================================= */
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
+
+let xp = 0;
+
+let labsCompleted = 0;
+
+let gamesCompleted = 0;
+
+let cipherCompleted = false;
 
 
 /* =========================================================
    LOGIN
-   ========================================================= */
+========================================================= */
 
-const loginForm = document.getElementById("loginForm");
 const loginPage = document.getElementById("loginPage");
+
 const dashboard = document.getElementById("dashboard");
 
+const loginForm = document.getElementById("loginForm");
+
 const loginError = document.getElementById("loginError");
+
 const userEmail = document.getElementById("userEmail");
+
 
 loginForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
 
     loginError.textContent = "";
 
     if (!email) {
-        loginError.textContent = "Please enter your email address.";
+
+        loginError.textContent =
+            "Please enter your email.";
+
         return;
     }
 
     if (password.length < 8) {
+
         loginError.textContent =
             "Password must contain at least 8 characters.";
-        return;
-    }
 
-    if (!email.includes("@")) {
-        loginError.textContent =
-            "Please enter a valid email address.";
         return;
     }
 
     userEmail.textContent = email;
 
     loginPage.classList.add("hidden");
-    dashboard.classList.remove("hidden");
 
-    showSection("home");
+    dashboard.classList.remove("hidden");
 
 });
 
 
 /* =========================================================
    LOGOUT
-   ========================================================= */
+========================================================= */
 
-document.getElementById("logoutButton").addEventListener("click", function() {
+document
+    .getElementById("logoutButton")
+    .addEventListener("click", function() {
 
-    dashboard.classList.add("hidden");
-    loginPage.classList.remove("hidden");
+        dashboard.classList.add("hidden");
 
-    document.getElementById("password").value = "";
+        loginPage.classList.remove("hidden");
 
-});
+        document.getElementById("password").value = "";
+
+    });
 
 
 /* =========================================================
    NAVIGATION
-   ========================================================= */
+========================================================= */
 
-const navItems = document.querySelectorAll(".nav-item");
+const navItems =
+    document.querySelectorAll(".nav-item");
 
-navItems.forEach(function(item) {
+const sections =
+    document.querySelectorAll(".content-section");
+
+const pageTitle =
+    document.getElementById("pageTitle");
+
+
+const sectionTitles = {
+
+    home: "Cybersecurity Dashboard",
+
+    ai: "AI Study Agent",
+
+    ciphers: "Cipher Laboratory",
+
+    labs: "Cybersecurity Labs",
+
+    games: "Cyber Games",
+
+    materials: "Study Materials",
+
+    progress: "My Progress"
+
+};
+
+
+function openSection(sectionName) {
+
+    sections.forEach(section => {
+
+        section.classList.remove("active-section");
+
+    });
+
+    const target =
+        document.getElementById(sectionName);
+
+    if (target) {
+
+        target.classList.add("active-section");
+
+    }
+
+
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        if (item.dataset.section === sectionName) {
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+
+    pageTitle.textContent =
+        sectionTitles[sectionName] ||
+        "CyberStudy";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+navItems.forEach(item => {
 
     item.addEventListener("click", function() {
 
-        const section = item.dataset.section;
-
-        showSection(section);
+        openSection(this.dataset.section);
 
     });
 
 });
 
 
-function showSection(sectionName) {
+document
+    .querySelectorAll("[data-go]")
+    .forEach(button => {
 
-    const sections = document.querySelectorAll(".content-section");
+        button.addEventListener("click", function() {
 
-    sections.forEach(function(section) {
-        section.classList.remove("active-section");
+            openSection(this.dataset.go);
+
+        });
+
     });
-
-    navItems.forEach(function(item) {
-        item.classList.remove("active");
-    });
-
-
-    const target = document.getElementById(
-        sectionName + "Section"
-    );
-
-    if (target) {
-        target.classList.add("active-section");
-    }
-
-
-    const activeNav = document.querySelector(
-        `[data-section="${sectionName}"]`
-    );
-
-    if (activeNav) {
-        activeNav.classList.add("active");
-    }
-
-
-    const titles = {
-
-        home: "Dashboard",
-
-        ciphers: "Cipher Techniques",
-
-        games: "Cyber Games",
-
-        materials: "Study Materials"
-
-    };
-
-    document.getElementById("pageTitle").textContent =
-        titles[sectionName] || "Dashboard";
-
-}
-
-
-window.showSection = showSection;
 
 
 /* =========================================================
-   CLOCK
-   ========================================================= */
+   WEB + YOUTUBE
+========================================================= */
 
-function updateClock() {
+document
+    .getElementById("webButton")
+    .addEventListener("click", function() {
 
-    const clock = document.getElementById("clock");
+        window.open(
+            "https://www.google.com/search?q=cybersecurity+study",
+            "_blank"
+        );
 
-    const now = new Date();
-
-    const time = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
     });
 
-    clock.textContent = time;
 
-}
+document
+    .getElementById("youtubeButton")
+    .addEventListener("click", function() {
 
-setInterval(updateClock, 1000);
+        window.open(
+            "https://www.youtube.com/results?search_query=cybersecurity+tutorial",
+            "_blank"
+        );
 
-updateClock();
+    });
 
 
 /* =========================================================
-   AI STUDY ASSISTANT
-   ========================================================= */
+   AI STUDY AGENT
+========================================================= */
 
-const aiInput = document.getElementById("aiInput");
-const aiSend = document.getElementById("aiSend");
-const aiChat = document.getElementById("aiChat");
+const aiInput =
+    document.getElementById("aiInput");
+
+const sendAI =
+    document.getElementById("sendAI");
+
+const chatMessages =
+    document.getElementById("chatMessages");
 
 
-function addAIMessage(question, answer) {
+function addMessage(text, type) {
 
-    const userMessage = document.createElement("div");
+    const message =
+        document.createElement("div");
 
-    userMessage.className = "ai-message";
+    message.className =
+        "chat-message " + type;
 
-    userMessage.style.marginBottom = "20px";
+    const icon =
+        type === "ai" ? "AI" : "YOU";
 
-    userMessage.innerHTML = `
-        <div class="message-avatar">YOU</div>
+    message.innerHTML = `
 
-        <div class="message-content">
+        <div class="message-icon">
+            ${icon}
+        </div>
 
-            <strong>Student</strong>
+        <div>
 
-            <p>${escapeHTML(question)}</p>
+            <strong>
+                ${type === "ai"
+                    ? "CyberStudy AI"
+                    : "You"}
+            </strong>
+
+            <p>
+                ${text}
+            </p>
 
         </div>
+
     `;
 
-    aiChat.appendChild(userMessage);
+    chatMessages.appendChild(message);
 
-
-    const aiMessage = document.createElement("div");
-
-    aiMessage.className = "ai-message";
-
-    aiMessage.innerHTML = `
-        <div class="message-avatar">AI</div>
-
-        <div class="message-content">
-
-            <strong>CyberStudy AI</strong>
-
-            <p>${answer}</p>
-
-        </div>
-    `;
-
-    aiChat.appendChild(aiMessage);
-
-    aiChat.scrollTop = aiChat.scrollHeight;
-
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
 }
 
 
-function getAIResponse(question) {
+/*
+   The AI in this GitHub-only version is a
+   local educational assistant.
 
-    const q = question.toLowerCase();
+   Later, a real AI API can be connected here.
+*/
+
+function generateAIResponse(question) {
+
+    const q =
+        question.toLowerCase().trim();
 
 
-    if (q.includes("caesar")) {
+    /* -----------------------------------------
+       PERSONAL / UNRELATED QUESTIONS
+    ----------------------------------------- */
+
+    const personalPatterns = [
+
+        "girlfriend",
+        "boyfriend",
+        "love",
+        "relationship",
+        "date me",
+        "marry me",
+        "my future",
+        "my personality",
+        "my family",
+        "who am i",
+        "personal",
+        "joke",
+        "gossip",
+        "celebrity",
+        "movie",
+        "song",
+        "food",
+        "game recommendation"
+
+    ];
+
+
+    const unrelated =
+        personalPatterns.some(
+            pattern => q.includes(pattern)
+        );
+
+
+    if (unrelated) {
 
         return `
-            <strong>Caesar Cipher</strong> is a classical
-            substitution cipher where each letter is shifted by
-            a fixed number of positions in the alphabet.
-            <br><br>
-            Example: with a shift of 3,
-            <strong>HELLO → KHOOR</strong>.
-            <br><br>
-            Go to <strong>Cipher Techniques</strong> to try the
-            interactive demonstration.
+            Sorry, I can't help you with that.
+            I'm designed to help you with your studies
+            and cybersecurity learning. 🔐
         `;
 
     }
 
 
-    if (q.includes("hill")) {
-
-        return `
-            The <strong>Hill Cipher</strong> is a polygraphic
-            substitution cipher based on matrix multiplication.
-            It represents letters as numerical values and uses
-            a key matrix for encryption.
-        `;
-
-    }
-
-
-    if (q.includes("playfair")) {
-
-        return `
-            The <strong>Playfair Cipher</strong> encrypts pairs
-            of letters rather than individual letters.
-            It uses a 5×5 matrix generated from a keyword.
-        `;
-
-    }
-
+    /* -----------------------------------------
+       CIA TRIAD
+    ----------------------------------------- */
 
     if (
-        q.includes("monoalphabetic") ||
-        q.includes("mono alphabetic")
+        q.includes("cia triad") ||
+        q.includes("confidentiality") ||
+        q.includes("integrity") ||
+        q.includes("availability")
     ) {
 
         return `
-            A <strong>Monoalphabetic Cipher</strong> uses one
-            substitution alphabet. Each plaintext letter maps
-            consistently to another letter.
+            <strong>CIA Triad</strong><br><br>
+
+            The CIA Triad is a fundamental cybersecurity
+            model consisting of three principles:
+
             <br><br>
-            Frequency analysis can often be used to attack it.
+
+            <strong>1. Confidentiality</strong><br>
+            Only authorized people should access information.
+
+            <br><br>
+
+            <strong>2. Integrity</strong><br>
+            Information should remain accurate and
+            protected from unauthorized modification.
+
+            <br><br>
+
+            <strong>3. Availability</strong><br>
+            Systems and information should be available
+            when authorized users need them.
+
+            <br><br>
+
+            <strong>Exam trick:</strong>
+            Think <em>Secret → Correct → Available</em>.
         `;
 
     }
 
 
+    /* -----------------------------------------
+       ENCRYPTION
+    ----------------------------------------- */
+
     if (
-        q.includes("vigenere") ||
-        q.includes("verman")
+        q.includes("encryption") ||
+        q.includes("encrypt")
     ) {
 
         return `
-            The <strong>Vigenère Cipher</strong> is a
-            polyalphabetic substitution cipher that uses a
-            keyword to perform changing shifts.
+            <strong>Encryption</strong><br><br>
+
+            Encryption converts readable plaintext into
+            ciphertext using an encryption algorithm and
+            usually a key.
+
             <br><br>
-            Note: if you meant <strong>Vernam Cipher</strong>,
-            that is a different technique based on combining
-            plaintext with a key stream.
+
+            Example:
+
+            <br>
+
+            Plaintext → "HELLO"<br>
+            Encryption → "KHOOR"<br>
+            Ciphertext → "KHOOR"
+
+            <br><br>
+
+            The purpose is to protect confidentiality.
+
+            <br><br>
+
+            <strong>Remember:</strong>
+            Encryption is reversible when the correct
+            decryption process/key is available.
         `;
 
     }
 
 
+    /* -----------------------------------------
+       HASHING
+    ----------------------------------------- */
+
     if (
-        q.includes("otp") ||
-        q.includes("one time pad")
+        q.includes("hash") ||
+        q.includes("hashing")
     ) {
 
         return `
-            A <strong>One-Time Pad</strong> uses a truly random
-            key that is at least as long as the message and is
-            never reused.
+            <strong>Hashing</strong><br><br>
+
+            Hashing converts data into a fixed-length
+            value called a hash.
+
             <br><br>
-            When implemented correctly, it provides
-            <strong>information-theoretic security</strong>.
+
+            Unlike normal encryption, secure hashing is
+            designed to be one-way.
+
+            <br><br>
+
+            Common examples include:
+
+            <br>
+            • SHA-256<br>
+            • SHA-512<br>
+            • SHA-3
+
+            <br><br>
+
+            <strong>Common use:</strong>
+            Password storage, integrity checking and
+            digital forensic analysis.
         `;
 
     }
 
 
+    /* -----------------------------------------
+       SQL INJECTION
+    ----------------------------------------- */
+
     if (
-        q.includes("cryptography") ||
-        q.includes("encryption")
+        q.includes("sql injection") ||
+        q.includes("sqli")
     ) {
 
         return `
-            <strong>Cryptography</strong> is the study of techniques
-            used to protect information.
+            <strong>SQL Injection</strong><br><br>
+
+            SQL Injection occurs when untrusted input
+            is improperly incorporated into a database
+            query.
+
             <br><br>
-            Start with the Cipher Techniques section to learn
-            classical encryption methods before moving to modern
-            cryptography.
+
+            It can potentially allow an attacker to
+            manipulate database queries.
+
+            <br><br>
+
+            <strong>Prevention:</strong>
+
+            <br>
+
+            • Prepared statements<br>
+            • Parameterized queries<br>
+            • Input validation<br>
+            • Least privilege
+
+            <br><br>
+
+            <strong>Exam memory:</strong>
+            "Untrusted input + unsafe query = SQL Injection risk."
         `;
 
     }
 
 
-    if (
-        q.includes("quiz") ||
-        q.includes("game")
-    ) {
-
-        return `
-            You can test yourself using the
-            <strong>Cyber Games</strong> section.
-            Try Cyber Quiz, Crack the Cipher, Cyber Detective,
-            and Threat Hunter.
-        `;
-
-    }
-
+    /* -----------------------------------------
+       PHISHING
+    ----------------------------------------- */
 
     if (
         q.includes("phishing") ||
-        q.includes("malware") ||
-        q.includes("ransomware")
+        q.includes("suspicious email")
     ) {
 
         return `
-            This is a cybersecurity threat topic.
+            <strong>Phishing</strong><br><br>
+
+            Phishing is a social engineering technique
+            where attackers attempt to trick users into
+            revealing information or performing an unsafe action.
+
             <br><br>
-            You can study threats such as phishing, malware,
-            ransomware and social engineering in
-            <strong>Study Materials</strong>.
+
+            Look for:
+
+            <br>
+            • Urgent language<br>
+            • Suspicious links<br>
+            • Fake login pages<br>
+            • Unexpected attachments<br>
+            • Sender/domain mismatch
+
+            <br><br>
+
+            <strong>Study trick:</strong>
+            Stop → Inspect → Verify → Report.
         `;
 
     }
 
 
+    /* -----------------------------------------
+       CAESAR
+    ----------------------------------------- */
+
+    if (
+        q.includes("caesar")
+    ) {
+
+        return `
+            <strong>Caesar Cipher</strong><br><br>
+
+            Caesar Cipher shifts every letter by a fixed
+            number of positions.
+
+            <br><br>
+
+            With shift 3:
+
+            <br>
+
+            A → D<br>
+            B → E<br>
+            C → F
+
+            <br><br>
+
+            Therefore:
+
+            <br>
+
+            HELLO → KHOOR
+
+            <br><br>
+
+            Try the interactive Cipher Lab to experiment
+            with different shifts.
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       PLAYFAIR
+    ----------------------------------------- */
+
+    if (
+        q.includes("playfair")
+    ) {
+
+        return `
+            <strong>Playfair Cipher</strong><br><br>
+
+            Playfair is a digraph substitution cipher.
+
+            <br><br>
+
+            Instead of encrypting individual letters,
+            it processes pairs of letters.
+
+            <br><br>
+
+            It uses a 5×5 matrix generated from a keyword.
+
+            <br><br>
+
+            This makes it different from simple
+            monoalphabetic substitution.
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       HILL
+    ----------------------------------------- */
+
+    if (
+        q.includes("hill cipher") ||
+        q.includes("hill")
+    ) {
+
+        return `
+            <strong>Hill Cipher</strong><br><br>
+
+            The Hill Cipher is a classical encryption
+            technique based on matrix mathematics.
+
+            <br><br>
+
+            Plaintext letters are converted into numbers
+            and multiplied by a key matrix.
+
+            <br><br>
+
+            It is useful for understanding how mathematics
+            can be applied to cryptography.
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       VIGENERE
+    ----------------------------------------- */
+
+    if (
+        q.includes("vigenere") ||
+        q.includes("vigenère")
+    ) {
+
+        return `
+            <strong>Vigenère Cipher</strong><br><br>
+
+            Vigenère uses a keyword to create a sequence
+            of Caesar shifts.
+
+            <br><br>
+
+            Unlike a simple Caesar cipher, the shift can
+            change for different letters.
+
+            <br><br>
+
+            This makes it a polyalphabetic substitution
+            cipher.
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       NETWORK SECURITY
+    ----------------------------------------- */
+
+    if (
+        q.includes("network security") ||
+        q.includes("firewall")
+    ) {
+
+        return `
+            <strong>Network Security</strong><br><br>
+
+            Network security protects network systems,
+            devices and data from unauthorized access
+            and attacks.
+
+            <br><br>
+
+            Important concepts include:
+
+            <br>
+            • Firewalls<br>
+            • IDS / IPS<br>
+            • VPNs<br>
+            • Network segmentation<br>
+            • Authentication<br>
+            • Monitoring
+
+            <br><br>
+
+            If you're studying for an exam, I can also
+            give you scenario-based questions.
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       QUIZ
+    ----------------------------------------- */
+
+    if (
+        q.includes("quiz") ||
+        q.includes("question")
+    ) {
+
+        return `
+            <strong>Cybersecurity Quick Quiz</strong><br><br>
+
+            Which principle of the CIA Triad focuses
+            on preventing unauthorized modification
+            of information?
+
+            <br><br>
+
+            A) Confidentiality<br>
+            B) Integrity<br>
+            C) Availability<br>
+            D) Authentication
+
+            <br><br>
+
+            <strong>Think before checking:</strong>
+            Which principle protects information
+            from being changed incorrectly?
+        `;
+
+    }
+
+
+    /* -----------------------------------------
+       DEFAULT STUDY RESPONSE
+    ----------------------------------------- */
+
     return `
-        I can help you explore cybersecurity concepts such as:
+        <strong>Let's study that.</strong><br><br>
+
+        I can help you understand cybersecurity and
+        computer-science study topics using:
+
         <br><br>
 
-        • Caesar Cipher<br>
-        • Hill Cipher<br>
-        • Playfair Cipher<br>
-        • Monoalphabetic Cipher<br>
-        • Vigenère Cipher<br>
-        • Vernam / One-Time Pad<br>
-        • Cryptography<br>
-        • Phishing<br>
-        • Malware<br>
-        • Network Security<br>
-        • Digital Forensics
+        • Simple explanations<br>
+        • Examples<br>
+        • Exam-focused notes<br>
+        • Scenario questions<br>
+        • Practice quizzes<br>
+        • Step-by-step reasoning
+
         <br><br>
 
-        Try asking: <strong>"Explain Caesar Cipher"</strong>.
+        Try asking:
+
+        <br>
+
+        <em>
+        "Explain CIA Triad"<br>
+        "What is hashing?"<br>
+        "Give me a phishing scenario"<br>
+        "Explain Caesar Cipher"<br>
+        "Give me a cybersecurity quiz"
+        </em>
     `;
 
 }
 
 
-function sendAIMessage() {
+/* SEND AI */
 
-    const question = aiInput.value.trim();
+function sendQuestion() {
 
-    if (!question) {
-        return;
-    }
+    const question =
+        aiInput.value.trim();
 
-    const answer = getAIResponse(question);
+    if (!question) return;
 
-    addAIMessage(question, answer);
+
+    addMessage(
+        question,
+        "user"
+    );
 
     aiInput.value = "";
+
+
+    setTimeout(function() {
+
+        const response =
+            generateAIResponse(question);
+
+        addMessage(
+            response,
+            "ai"
+        );
+
+    }, 350);
 
 }
 
 
-aiSend.addEventListener("click", sendAIMessage);
+sendAI.addEventListener(
+    "click",
+    sendQuestion
+);
 
 
-aiInput.addEventListener("keydown", function(event) {
+aiInput.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (event.key === "Enter") {
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
 
-        sendAIMessage();
+            event.preventDefault();
+
+            sendQuestion();
+
+        }
 
     }
+);
 
-});
 
+/* SUGGESTIONS */
 
-/* QUICK AI BUTTONS */
+document
+    .querySelectorAll(".suggestion")
+    .forEach(button => {
 
-document.querySelectorAll(".suggestion").forEach(function(button) {
+        button.addEventListener(
+            "click",
+            function() {
 
-    button.addEventListener("click", function() {
+                aiInput.value =
+                    this.textContent;
 
-        const question = button.textContent.trim();
+                sendQuestion();
 
-        aiInput.value = question;
-
-        sendAIMessage();
+            }
+        );
 
     });
 
-});
-
 
 /* =========================================================
-   CAESAR CIPHER DEMO
-   ========================================================= */
+   CAESAR CIPHER
+========================================================= */
 
-function caesarEncrypt(text, shift) {
+const cipherText =
+    document.getElementById("cipherText");
+
+const cipherShift =
+    document.getElementById("cipherShift");
+
+const cipherOutput =
+    document.getElementById("cipherOutput");
+
+
+function caesarCipher(text, shift) {
 
     let result = "";
-
-    shift = Number(shift) || 0;
-
-    shift = shift % 26;
-
 
     for (let i = 0; i < text.length; i++) {
 
         const char = text[i];
 
-        if (char >= "A" && char <= "Z") {
+        const code =
+            char.charCodeAt(0);
 
-            const code =
-                ((char.charCodeAt(0) - 65 + shift) % 26) + 65;
+        if (
+            code >= 65 &&
+            code <= 90
+        ) {
 
-            result += String.fromCharCode(code);
+            result += String.fromCharCode(
+                ((code - 65 + shift + 26) % 26) + 65
+            );
 
         }
 
-        else if (char >= "a" && char <= "z") {
+        else if (
+            code >= 97 &&
+            code <= 122
+        ) {
 
-            const code =
-                ((char.charCodeAt(0) - 97 + shift) % 26) + 97;
-
-            result += String.fromCharCode(code);
+            result += String.fromCharCode(
+                ((code - 97 + shift + 26) % 26) + 97
+            );
 
         }
 
@@ -478,429 +900,636 @@ function caesarEncrypt(text, shift) {
 }
 
 
-function runCaesar() {
+document
+    .getElementById("encryptButton")
+    .addEventListener(
+        "click",
+        function() {
 
-    const input =
-        document.getElementById("cipherInput").value;
+            const text =
+                cipherText.value;
 
-    const shift =
-        document.getElementById("cipherShift").value;
+            const shift =
+                Number(cipherShift.value);
 
-    const output =
-        document.getElementById("cipherOutput");
+            cipherOutput.textContent =
+                caesarCipher(text, shift);
+
+            cipherCompleted = true;
+
+            addXP(25);
+
+            unlockBadge("badgeCipher");
+
+        }
+    );
 
 
-    if (!input.trim()) {
+document
+    .getElementById("decryptButton")
+    .addEventListener(
+        "click",
+        function() {
 
-        output.textContent =
-            "Please enter a message first.";
+            const text =
+                cipherText.value;
 
-        return;
+            const shift =
+                Number(cipherShift.value);
+
+            cipherOutput.textContent =
+                caesarCipher(text, -shift);
+
+        }
+    );
+
+
+/* =========================================================
+   CIPHER CARDS
+========================================================= */
+
+document
+    .querySelectorAll(".cipher-card")
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            function() {
+
+                const cipher =
+                    this.dataset.cipher;
+
+                const names = {
+
+                    caesar: "Caesar Cipher",
+
+                    hill: "Hill Cipher",
+
+                    playfair: "Playfair Cipher",
+
+                    mono: "Monoalphabetic Cipher",
+
+                    vigenere: "Vigenère Cipher",
+
+                    otp: "Vernam / One-Time Pad"
+
+                };
+
+                const descriptions = {
+
+                    caesar:
+                        "A substitution cipher where letters are shifted by a fixed amount.",
+
+                    hill:
+                        "A matrix-based cipher that uses linear algebra for encryption.",
+
+                    playfair:
+                        "A digraph cipher that encrypts pairs of letters using a 5×5 matrix.",
+
+                    mono:
+                        "A substitution cipher where each plaintext character maps to another character.",
+
+                    vigenere:
+                        "A polyalphabetic cipher using a repeating keyword.",
+
+                    otp:
+                        "A One-Time Pad uses a random key of equal length to the message."
+                };
+
+
+                showModal(
+                    names[cipher],
+                    `
+                        <p class="challenge-question">
+                            ${descriptions[cipher]}
+                        </p>
+
+                        <div class="result-message">
+                            <strong>Study Tip:</strong><br><br>
+                            Ask the AI Study Agent to explain
+                            this cipher with an example,
+                            then return to the Cipher Lab
+                            for practice.
+                        </div>
+                    `
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   LAB SYSTEM
+========================================================= */
+
+const labQuestions = {
+
+    password: {
+
+        title: "Password Guardian",
+
+        question:
+            "Which password is generally the strongest choice?",
+
+        options: [
+
+            "password123",
+
+            "Cyber@2024",
+
+            "A long unique passphrase with multiple words",
+
+            "123456789"
+
+        ],
+
+        answer: 2
+
+    },
+
+
+    base64: {
+
+        title: "Base64 Decoder",
+
+        question:
+            "Base64 is primarily a form of what?",
+
+        options: [
+
+            "Encryption",
+
+            "Encoding",
+
+            "Hashing",
+
+            "Authentication"
+
+        ],
+
+        answer: 1
+
+    },
+
+
+    phishing: {
+
+        title: "Phishing Detective",
+
+        question:
+            "An email says your account will be deleted in 5 minutes unless you click a strange link. What should you do first?",
+
+        options: [
+
+            "Click immediately",
+
+            "Forward it to everyone",
+
+            "Verify the message through an official channel",
+
+            "Enter your password to check"
+
+        ],
+
+        answer: 2
+
+    },
+
+
+    hash: {
+
+        title: "Hash Detective",
+
+        question:
+            "Which property is normally expected from a secure cryptographic hash?",
+
+        options: [
+
+            "Easy reversal",
+
+            "Fixed-length output",
+
+            "No input required",
+
+            "Guaranteed encryption"
+
+        ],
+
+        answer: 1
+
+    },
+
+
+    incident: {
+
+        title: "Incident Response",
+
+        question:
+            "A serious cyber incident has just been detected. What should an organization generally do first according to its incident response process?",
+
+        options: [
+
+            "Ignore the alert",
+
+            "Follow the established incident response procedure",
+
+            "Delete all evidence",
+
+            "Post the incident publicly"
+
+        ],
+
+        answer: 1
+
+    },
+
+
+    cia: {
+
+        title: "CIA Scenario",
+
+        question:
+            "A hospital database is changed without authorization. Which CIA principle is primarily affected?",
+
+        options: [
+
+            "Confidentiality",
+
+            "Integrity",
+
+            "Availability",
+
+            "Non-repudiation"
+
+        ],
+
+        answer: 1
 
     }
 
-    output.textContent =
-        caesarEncrypt(input, shift);
-
-}
+};
 
 
-window.runCaesar = runCaesar;
+function startLab(labName) {
+
+    const lab =
+        labQuestions[labName];
+
+    if (!lab) return;
 
 
-/* =========================================================
-   CIPHER INFORMATION
-   ========================================================= */
-
-function openCipher(cipher) {
-
-    const information = {
-
-        "Caesar Cipher": `
-            <p>
-                The Caesar Cipher is a substitution technique
-                where letters are shifted by a fixed number.
-            </p>
-
-            <p>
-                <strong>Example:</strong>
-                A shift of 3 changes A → D,
-                B → E and C → F.
-            </p>
-
-            <p>
-                <strong>Security:</strong>
-                It is not secure for modern applications because
-                there are only 26 possible shifts.
-            </p>
-        `,
-
-        "Hill Cipher": `
-            <p>
-                The Hill Cipher uses linear algebra and matrix
-                multiplication to encrypt groups of letters.
-            </p>
-
-            <p>
-                Letters are converted into numerical values and
-                multiplied by a key matrix.
-            </p>
-        `,
-
-        "Playfair Cipher": `
-            <p>
-                Playfair encrypts pairs of letters using a
-                5×5 matrix created from a keyword.
-            </p>
-
-            <p>
-                It was historically useful because it hides
-                simple single-letter frequency patterns better
-                than basic substitution ciphers.
-            </p>
-        `,
-
-        "Monoalphabetic Cipher": `
-            <p>
-                A monoalphabetic substitution cipher uses a
-                fixed substitution alphabet.
-            </p>
-
-            <p>
-                Each plaintext letter always maps to the same
-                ciphertext letter.
-            </p>
-        `,
-
-        "Vigenere Cipher": `
-            <p>
-                The Vigenère Cipher uses a repeating keyword
-                to apply different Caesar-style shifts.
-            </p>
-
-            <p>
-                This makes it more resistant to simple frequency
-                analysis than the Caesar Cipher.
-            </p>
-        `,
-
-        "One-Time Pad": `
-            <p>
-                The One-Time Pad uses a truly random key that is
-                as long as the plaintext.
-            </p>
-
-            <p>
-                The key must remain secret and must never be reused.
-                Correctly implemented, OTP provides perfect secrecy.
-            </p>
-        `
-
-    };
-
-
-    showModal(
-        cipher,
-        information[cipher] ||
-        "<p>Information unavailable.</p>"
+    showQuestionModal(
+        lab.title,
+        lab.question,
+        lab.options,
+        lab.answer,
+        "lab"
     );
 
 }
 
 
-window.openCipher = openCipher;
+document
+    .querySelectorAll(".lab-start")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                startLab(
+                    this.dataset.lab
+                );
+
+            }
+        );
+
+    });
 
 
 /* =========================================================
-   CYBER GAMES
-   ========================================================= */
+   GAMES
+========================================================= */
 
-function startQuiz() {
+const gameQuestions = {
 
-    showModal(
+    cipher: {
 
-        "Cyber Quiz",
+        title: "Cipher Breaker",
 
-        `
-            <p>
-                <strong>Question:</strong>
-                What does the CIA Triad represent?
-            </p>
+        question:
+            "You intercept the message 'KHOOR'. The sender says a Caesar cipher with shift 3 was used. What is the plaintext?",
 
-            <button
-                class="quiz-answer"
-                onclick="quizAnswer('A')"
-            >
-                A. Confidentiality, Integrity, Availability
-            </button>
+        options: [
 
-            <button
-                class="quiz-answer"
-                onclick="quizAnswer('B')"
-            >
-                B. Cyber Intelligence Agency
-            </button>
+            "HELLO",
 
-            <button
-                class="quiz-answer"
-                onclick="quizAnswer('C')"
-            >
-                C. Control, Internet, Access
-            </button>
+            "WORLD",
 
-            <div id="quizResult"></div>
-        `
+            "CYBER",
 
-    );
+            "SECURE"
 
-}
+        ],
+
+        answer: 0
+
+    },
 
 
-window.startQuiz = startQuiz;
+    phishing: {
+
+        title: "Phishing Detective",
+
+        question:
+            "You receive an unexpected email asking you to log into your bank using a shortened URL. What is the safest response?",
+
+        options: [
+
+            "Click it immediately",
+
+            "Reply with your password",
+
+            "Verify through the official banking website",
+
+            "Download the attachment"
+
+        ],
+
+        answer: 2
+
+    },
 
 
-function quizAnswer(answer) {
+    threat: {
 
-    const result =
-        document.getElementById("quizResult");
+        title: "Threat Hunter",
 
-    if (answer === "A") {
+        question:
+            "Files suddenly become encrypted and a message demands payment to restore access. What type of attack does this resemble?",
 
-        result.innerHTML = `
-            <p style="color:#37d67a; margin-top:20px;">
-                ✓ Correct! CIA = Confidentiality, Integrity,
-                Availability.
-            </p>
-        `;
+        options: [
+
+            "Ransomware",
+
+            "Firewall",
+
+            "Authentication",
+
+            "Backup"
+
+        ],
+
+        answer: 0
+
+    },
+
+
+    incident: {
+
+        title: "Incident Commander",
+
+        question:
+            "A suspicious machine may be compromised. Which action is most appropriate according to an organization's incident-response process?",
+
+        options: [
+
+            "Delete all evidence",
+
+            "Follow the organization's response and containment procedures",
+
+            "Ignore the alert",
+
+            "Share confidential evidence publicly"
+
+        ],
+
+        answer: 1
 
     }
 
-    else {
-
-        result.innerHTML = `
-            <p style="color:#e5092f; margin-top:20px;">
-                ✕ Incorrect. Try again.
-            </p>
-        `;
-
-    }
-
-}
+};
 
 
-window.quizAnswer = quizAnswer;
+document
+    .querySelectorAll(".game-start")
+    .forEach(button => {
 
+        button.addEventListener(
+            "click",
+            function() {
 
-function startCipherGame() {
+                const game =
+                    gameQuestions[
+                        this.dataset.game
+                    ];
 
-    showModal(
+                showQuestionModal(
+                    game.title,
+                    game.question,
+                    game.options,
+                    game.answer,
+                    "game"
+                );
 
-        "Crack the Cipher",
+            }
+        );
 
-        `
-            <p>
-                <strong>Encrypted message:</strong>
-            </p>
-
-            <p style="
-                background:#050505;
-                padding:20px;
-                color:#e5092f;
-                font-family:monospace;
-            ">
-                KHOOR
-            </p>
-
-            <p>
-                Hint: Caesar Cipher with a shift of 3.
-            </p>
-
-            <button
-                class="login-button"
-                onclick="showModal(
-                    'Crack the Cipher',
-                    '<p style=color:#37d67a>✓ Correct! KHOOR → HELLO</p>'
-                )"
-            >
-                DECODE MESSAGE
-            </button>
-        `
-
-    );
-
-}
-
-
-window.startCipherGame = startCipherGame;
-
-
-function startDetective() {
-
-    showModal(
-
-        "Cyber Detective",
-
-        `
-            <p>
-                <strong>Incident #CYB-204</strong>
-            </p>
-
-            <p>
-                A student receives an email claiming that their
-                university account will be disabled unless they
-                immediately click a link and enter their password.
-            </p>
-
-            <p>
-                The sender address contains a suspicious domain.
-            </p>
-
-            <p>
-                <strong>Question:</strong>
-                What type of attack is most likely occurring?
-            </p>
-
-            <p style="color:#e5092f;">
-                Investigation clue: Examine the sender,
-                urgency and requested credentials.
-            </p>
-
-            <button
-                class="login-button"
-                onclick="showModal(
-                    'Investigation Result',
-                    '<p style=color:#37d67a>✓ Correct analysis: This is a phishing scenario.</p>'
-                )"
-            >
-                IDENTIFY THREAT
-            </button>
-        `
-
-    );
-
-}
-
-
-window.startDetective = startDetective;
-
-
-function startThreatHunter() {
-
-    showModal(
-
-        "Threat Hunter",
-
-        `
-            <p>
-                Your simulated security system detected:
-            </p>
-
-            <p style="
-                background:#050505;
-                padding:18px;
-                font-family:monospace;
-                color:#aaa;
-            ">
-                LOGIN SUCCESS<br>
-                LOGIN SUCCESS<br>
-                LOGIN SUCCESS<br>
-                LOGIN FAILED<br>
-                LOGIN FAILED<br>
-                LOGIN FAILED<br>
-                LOGIN FAILED<br>
-                LOGIN FAILED
-            </p>
-
-            <p>
-                What should a security analyst investigate?
-            </p>
-
-            <button
-                class="login-button"
-                onclick="showModal(
-                    'Threat Analysis',
-                    '<p style=color:#37d67a>✓ Correct. Multiple failed login attempts can indicate a brute-force or credential attack.</p>'
-                )"
-            >
-                ANALYSE EVENT
-            </button>
-        `
-
-    );
-
-}
-
-
-window.startThreatHunter = startThreatHunter;
+    });
 
 
 /* =========================================================
-   WEB + YOUTUBE
-   ========================================================= */
+   QUESTION MODAL
+========================================================= */
 
-function openWebSearch() {
+const modal =
+    document.getElementById("modal");
 
-    window.open(
-        "https://www.google.com/search?q=cybersecurity+learning",
-        "_blank"
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const modalContent =
+    document.getElementById("modalContent");
+
+
+function showQuestionModal(
+    title,
+    question,
+    options,
+    answer,
+    type
+) {
+
+    modalTitle.textContent =
+        title;
+
+    modalContent.innerHTML = `
+
+        <div class="challenge-question">
+            ${question}
+        </div>
+
+        <div id="answerArea"></div>
+
+        <div id="questionResult"></div>
+
+    `;
+
+    const answerArea =
+        document.getElementById("answerArea");
+
+
+    options.forEach(
+        (option, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "answer-option";
+
+            button.textContent =
+                option;
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    answerArea
+                        .querySelectorAll(
+                            ".answer-option"
+                        )
+                        .forEach(
+                            btn =>
+                                btn.disabled = true
+                        );
+
+
+                    if (index === answer) {
+
+                        button.classList.add(
+                            "correct"
+                        );
+
+                        document
+                            .getElementById(
+                                "questionResult"
+                            )
+                            .innerHTML = `
+                                <div class="result-message">
+                                    ✓ Correct! Excellent work.
+                                    <br><br>
+                                    +${type === "game" ? 100 : 50} XP
+                                </div>
+                            `;
+
+
+                        if (type === "game") {
+
+                            gamesCompleted++;
+
+                            addXP(100);
+
+                            unlockBadge(
+                                "badgeMission"
+                            );
+
+                        }
+
+                        else {
+
+                            labsCompleted++;
+
+                            addXP(50);
+
+                            unlockBadge(
+                                "badgeLab"
+                            );
+
+                        }
+
+
+                        updateProgress();
+
+                    }
+
+                    else {
+
+                        button.classList.add(
+                            "wrong"
+                        );
+
+                        document
+                            .getElementById(
+                                "questionResult"
+                            )
+                            .innerHTML = `
+                                <div class="result-message">
+                                    ✕ Not quite.
+                                    <br><br>
+                                    Review the concept and
+                                    try another challenge.
+                                </div>
+                            `;
+
+                    }
+
+                }
+            );
+
+            answerArea.appendChild(button);
+
+        }
     );
 
-}
 
-
-window.openWebSearch = openWebSearch;
-
-
-function openYouTubeSearch() {
-
-    window.open(
-        "https://www.youtube.com/results?search_query=cybersecurity+tutorial",
-        "_blank"
-    );
+    modal.classList.remove("hidden");
 
 }
-
-
-window.openYouTubeSearch = openYouTubeSearch;
 
 
 /* =========================================================
-   MODAL
-   ========================================================= */
+   GENERAL MODAL
+========================================================= */
 
 function showModal(title, content) {
 
-    document.getElementById("modalTitle").textContent =
+    modalTitle.textContent =
         title;
 
-    document.getElementById("modalContent").innerHTML =
+    modalContent.innerHTML =
         content;
 
-    document.getElementById("modal").classList.remove("hidden");
+    modal.classList.remove("hidden");
 
 }
 
 
-window.showModal = showModal;
+document
+    .getElementById("closeModal")
+    .addEventListener(
+        "click",
+        function() {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+        }
+    );
 
 
-function closeModal() {
-
-    document.getElementById("modal").classList.add("hidden");
-
-}
-
-
-window.closeModal = closeModal;
-
-
-document.getElementById("modal").addEventListener(
+modal.addEventListener(
     "click",
     function(event) {
 
-        if (event.target.id === "modal") {
+        if (event.target === modal) {
 
-            closeModal();
+            modal.classList.add(
+                "hidden"
+            );
 
         }
 
@@ -909,15 +1538,139 @@ document.getElementById("modal").addEventListener(
 
 
 /* =========================================================
-   SECURITY / HTML ESCAPING
-   ========================================================= */
+   XP + PROGRESS
+========================================================= */
 
-function escapeHTML(text) {
+function addXP(amount) {
 
-    const div = document.createElement("div");
+    xp += amount;
 
-    div.textContent = text;
-
-    return div.innerHTML;
+    updateProgress();
 
 }
+
+
+function updateProgress() {
+
+    document
+        .getElementById("xpValue")
+        .textContent = xp;
+
+
+    document
+        .getElementById("labsCompleted")
+        .textContent = labsCompleted;
+
+
+    document
+        .getElementById("gamesCompleted")
+        .textContent = gamesCompleted;
+
+
+    let progress =
+        Math.min(
+            100,
+            Math.round(
+                (xp / 500) * 100
+            )
+        );
+
+
+    document
+        .getElementById("progressPercent")
+        .textContent =
+        progress + "%";
+
+
+    document
+        .getElementById("progressFill")
+        .style.width =
+        progress + "%";
+
+
+    if (xp >= 500) {
+
+        unlockBadge(
+            "badgeScholar"
+        );
+
+    }
+
+}
+
+
+function unlockBadge(id) {
+
+    const badge =
+        document.getElementById(id);
+
+    if (badge) {
+
+        badge.classList.remove(
+            "locked"
+        );
+
+        badge.classList.add(
+            "unlocked"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MATERIAL BUTTONS
+========================================================= */
+
+document
+    .querySelectorAll(".material-button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                showModal(
+                    "Study Materials",
+                    `
+                        <p class="challenge-question">
+                            This topic is part of the
+                            CyberStudy knowledge base.
+                        </p>
+
+                        <div class="result-message">
+
+                            Use the AI Study Agent to ask
+                            questions about this topic.
+
+                            <br><br>
+
+                            Try asking:
+
+                            <br><br>
+
+                            "Explain this topic simply."<br>
+                            "Give me an exam example."<br>
+                            "Give me a scenario question."<br>
+                            "Quiz me on this topic."
+
+                        </div>
+                    `
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+updateProgress();
+
+console.log(
+    "CYBERSTUDY SYSTEM INITIALIZED."
+);
