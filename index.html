@@ -11,268 +11,409 @@
 
 <body>
 
-    <!-- ================= LOGIN PAGE ================= -->
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
 
-    <section id="loginPage" class="login-page">
+<div id="loginPage" class="page">
 
-        <div class="login-background-grid"></div>
+    <div class="login-background"></div>
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <div class="logo">
-                <span class="logo-bracket">&lt;</span>
-                CYBER<span>STUDY</span>
-                <span class="logo-bracket">/&gt;</span>
+        <div class="brand">
+            <div class="brand-symbol">C</div>
+            <div>
+                <h1>CYBER<span>STUDY</span></h1>
+                <p>Cybersecurity Learning Platform</p>
             </div>
+        </div>
 
-            <p class="login-subtitle">
-                CYBERSECURITY LEARNING ENVIRONMENT
-            </p>
+        <div class="login-line"></div>
 
-            <div class="terminal-line">
-                <span>●</span> SECURE ACCESS REQUIRED
-            </div>
+        <h2>Welcome Back</h2>
 
-            <form id="loginForm">
+        <p class="login-description">
+            Learn cybersecurity. Practice skills. Investigate threats.
+        </p>
 
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="student@example.com"
-                        required
-                    >
-                </div>
+        <form id="loginForm">
 
-                <div class="input-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Minimum 8 characters"
-                        minlength="8"
-                        required
-                    >
-                </div>
+            <label>Email</label>
 
-                <p id="loginError" class="login-error"></p>
+            <input
+                type="email"
+                id="email"
+                placeholder="student@example.com"
+                required
+            >
 
-                <button type="submit" class="login-button">
-                    ENTER CYBERSTUDY
-                    <span>→</span>
-                </button>
+            <label>Password</label>
 
-            </form>
+            <input
+                type="password"
+                id="password"
+                placeholder="Minimum 8 characters"
+                minlength="8"
+                required
+            >
 
-            <div class="security-status">
-                <span class="status-dot"></span>
-                SYSTEM SECURE
-                <span class="status-divider">|</span>
-                ENCRYPTED SESSION
+            <div id="loginError" class="error-message"></div>
+
+            <button type="submit" class="primary-button">
+                ENTER CYBERSTUDY
+            </button>
+
+        </form>
+
+        <div class="login-footer">
+            <span>●</span> Secure Learning Environment
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<div id="dashboard" class="dashboard hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-symbol small">C</div>
+
+            <div>
+                <strong>CYBER<span>STUDY</span></strong>
+                <small>LEARNING SYSTEM</small>
             </div>
 
         </div>
 
-    </section>
+        <div class="sidebar-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
 
+        <nav>
 
-    <!-- ================= DASHBOARD ================= -->
+            <button class="nav-item active" data-section="home">
+                <span>⌂</span>
+                Dashboard
+            </button>
 
-    <section id="dashboard" class="dashboard hidden">
+            <button class="nav-item" data-section="ai">
+                <span>◉</span>
+                AI Study Agent
+            </button>
 
-        <!-- SIDEBAR -->
+            <button class="nav-item" data-section="ciphers">
+                <span>⌁</span>
+                Cipher Lab
+            </button>
 
-        <aside class="sidebar">
+            <button class="nav-item" data-section="labs">
+                <span>▣</span>
+                Cyber Labs
+            </button>
 
-            <div class="sidebar-logo">
-                <span>&lt;</span> CYBER<span>STUDY</span> <span>/&gt;</span>
-            </div>
+            <button class="nav-item" data-section="games">
+                <span>◆</span>
+                Cyber Games
+            </button>
 
-            <div class="user-status">
-                <div class="user-avatar">CS</div>
+            <button class="nav-item" data-section="materials">
+                <span>▤</span>
+                Study Materials
+            </button>
+
+            <button class="nav-item" data-section="progress">
+                <span>◈</span>
+                My Progress
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="user-mini">
+                <div class="avatar">S</div>
 
                 <div>
                     <strong id="userEmail">Student</strong>
-                    <small>Cybersecurity Learner</small>
+                    <small>CYBER LEARNER</small>
                 </div>
             </div>
 
-            <nav>
+            <button id="logoutButton" class="logout-button">
+                Logout
+            </button>
 
-                <button class="nav-item active" data-section="home">
-                    <span>⌂</span>
-                    Dashboard
-                </button>
+        </div>
 
-                <button class="nav-item" data-section="ciphers">
-                    <span>⌘</span>
-                    Cipher Techniques
-                </button>
+    </aside>
 
-                <button class="nav-item" data-section="games">
-                    <span>◈</span>
-                    Cyber Games
-                </button>
 
-                <button class="nav-item" data-section="materials">
-                    <span>▤</span>
-                    Study Materials
-                </button>
+    <!-- MAIN CONTENT -->
 
-            </nav>
+    <main class="main-content">
 
-            <div class="sidebar-footer">
-                <div class="system-status">
-                    <span></span>
-                    ONLINE
-                </div>
+        <!-- TOP BAR -->
 
-                <button id="logoutButton" class="logout-button">
-                    Logout
-                </button>
+        <header class="topbar">
+
+            <div>
+
+                <span class="top-label">
+                    CYBERSTUDY / LEARNING TERMINAL
+                </span>
+
+                <h2 id="pageTitle">
+                    Cybersecurity Dashboard
+                </h2>
+
             </div>
 
-        </aside>
+            <div class="top-actions">
+
+                <button id="webButton" class="resource-button">
+                    🌐 Web
+                </button>
+
+                <button id="youtubeButton" class="resource-button">
+                    ▶ YouTube
+                </button>
+
+            </div>
+
+        </header>
 
 
-        <!-- MAIN CONTENT -->
+        <!-- =====================================================
+             HOME
+        ====================================================== -->
 
-        <main class="main-content">
+        <section id="home" class="content-section active-section">
 
-            <!-- TOP BAR -->
-
-            <header class="topbar">
+            <div class="hero-panel">
 
                 <div>
-                    <p class="topbar-label">CYBERSECURITY LEARNING HUB</p>
-                    <h2 id="pageTitle">Dashboard</h2>
-                </div>
 
-                <div class="topbar-right">
-                    <div class="clock" id="clock"></div>
+                    <span class="section-tag">
+                        STUDENT COMMAND CENTER
+                    </span>
 
-                    <div class="security-badge">
-                        <span></span>
-                        SECURE
-                    </div>
-                </div>
+                    <h1>
+                        Learn Cybersecurity.<br>
+                        <span>Think Like a Defender.</span>
+                    </h1>
 
-            </header>
+                    <p>
+                        Explore cryptography, security concepts,
+                        cyber investigations and practical challenges
+                        in one learning environment.
+                    </p>
 
-
-            <!-- ================= HOME ================= -->
-
-            <section id="homeSection" class="content-section active-section">
-
-                <div class="hero-section">
-
-                    <div class="hero-text">
-
-                        <p class="red-label">WELCOME BACK, LEARNER</p>
-
-                        <h1>
-                            What do you want to
-                            <span>learn today?</span>
-                        </h1>
-
-                        <p>
-                            Explore cybersecurity concepts, cryptographic
-                            techniques, practical challenges and interactive
-                            learning resources.
-                        </p>
-
-                    </div>
-
-                    <div class="hero-terminal">
-
-                        <div class="terminal-header">
-                            <span>CYBERSTUDY_AI</span>
-                            <span>● ● ●</span>
-                        </div>
-
-                        <div class="terminal-body">
-                            <p><span class="red">&gt;</span> system.initialize()</p>
-                            <p><span class="red">&gt;</span> loading_learning_modules...</p>
-                            <p><span class="green">✓</span> 6 cipher modules loaded</p>
-                            <p><span class="green">✓</span> cyber games available</p>
-                            <p><span class="green">✓</span> learning resources ready</p>
-                            <p><span class="red">&gt;</span> awaiting student input_</p>
-                        </div>
-
-                    </div>
+                    <button class="primary-button small-button"
+                            data-go="ai">
+                        START LEARNING →
+                    </button>
 
                 </div>
 
-
-                <!-- AI STUDY AGENT -->
-
-                <div class="ai-agent-card">
-
-                    <div class="ai-agent-header">
-
-                        <div class="ai-icon">
-                            AI
+                <div class="hero-shield">
+                    <div class="shield-ring">
+                        <div class="shield">
+                            ◇
                         </div>
-
-                        <div>
-                            <p class="red-label">AI STUDY AGENT</p>
-                            <h2>CyberStudy Assistant</h2>
-                        </div>
-
-                        <div class="ai-online">
-                            <span></span>
-                            ONLINE
-                        </div>
-
                     </div>
+                </div>
 
-                    <div class="ai-chat" id="aiChat">
+            </div>
 
-                        <div class="ai-message">
-                            <div class="message-avatar">AI</div>
 
-                            <div class="message-content">
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>TOPICS</span>
+                    <strong>20+</strong>
+                    <small>Cybersecurity concepts</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>CIPHERS</span>
+                    <strong>06</strong>
+                    <small>Interactive techniques</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>LABS</span>
+                    <strong>08</strong>
+                    <small>Practice challenges</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>GAMES</span>
+                    <strong>04</strong>
+                    <small>Investigation challenges</small>
+                </div>
+
+            </div>
+
+
+            <!-- QUICK LEARNING -->
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-tag">QUICK ACCESS</span>
+                    <h2>Choose Your Mission</h2>
+                </div>
+
+            </div>
+
+            <div class="quick-grid">
+
+                <div class="quick-card" data-go="ai">
+                    <div class="quick-icon">◉</div>
+                    <h3>Ask the AI</h3>
+                    <p>
+                        Ask cybersecurity questions and get
+                        study-focused explanations.
+                    </p>
+                    <span>OPEN AGENT →</span>
+                </div>
+
+                <div class="quick-card" data-go="ciphers">
+                    <div class="quick-icon">⌁</div>
+                    <h3>Cipher Lab</h3>
+                    <p>
+                        Encrypt, decrypt and understand classical
+                        cryptographic techniques.
+                    </p>
+                    <span>ENTER LAB →</span>
+                </div>
+
+                <div class="quick-card" data-go="labs">
+                    <div class="quick-icon">▣</div>
+                    <h3>Practice Labs</h3>
+                    <p>
+                        Solve safe cybersecurity scenarios and
+                        improve your analytical skills.
+                    </p>
+                    <span>START PRACTICE →</span>
+                </div>
+
+                <div class="quick-card" data-go="games">
+                    <div class="quick-icon">◆</div>
+                    <h3>Cyber Games</h3>
+                    <p>
+                        Investigate clues, identify threats and
+                        complete cybersecurity challenges.
+                    </p>
+                    <span>PLAY →</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AI STUDY AGENT
+        ====================================================== -->
+
+        <section id="ai" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-tag">INTELLIGENT STUDY ASSISTANT</span>
+                    <h1>AI Study Agent</h1>
+                    <p>
+                        Ask me anything related to cybersecurity,
+                        computer science or your studies.
+                    </p>
+                </div>
+
+                <div class="ai-status">
+                    <span class="status-dot"></span>
+                    READY
+                </div>
+
+            </div>
+
+
+            <div class="ai-layout">
+
+                <div class="ai-main">
+
+                    <div id="chatMessages" class="chat-messages">
+
+                        <div class="chat-message ai">
+
+                            <div class="message-icon">AI</div>
+
+                            <div>
+
                                 <strong>CyberStudy AI</strong>
+
                                 <p>
-                                    Hello! I'm your cybersecurity study
-                                    assistant. What do you want to learn today?
+                                    Hello, student. What do you want
+                                    to learn today?
                                 </p>
 
-                                <div class="suggestion-buttons">
-
-                                    <button class="suggestion">
-                                        Explain Caesar Cipher
-                                    </button>
-
-                                    <button class="suggestion">
-                                        What is Cryptography?
-                                    </button>
-
-                                    <button class="suggestion">
-                                        Give me a cyber quiz
-                                    </button>
-
-                                    <button class="suggestion">
-                                        Explain OTP encryption
-                                    </button>
-
-                                </div>
+                                <p>
+                                    You can ask me about cryptography,
+                                    networking, malware, cybersecurity,
+                                    programming, databases, operating
+                                    systems and other study topics.
+                                </p>
 
                             </div>
+
                         </div>
 
                     </div>
+
+
+                    <div class="suggestion-row">
+
+                        <button class="suggestion">
+                            Explain CIA Triad
+                        </button>
+
+                        <button class="suggestion">
+                            What is encryption?
+                        </button>
+
+                        <button class="suggestion">
+                            Explain SQL Injection
+                        </button>
+
+                        <button class="suggestion">
+                            Give me a cyber quiz
+                        </button>
+
+                    </div>
+
 
                     <div class="ai-input-area">
 
-                        <input
-                            type="text"
+                        <textarea
                             id="aiInput"
-                            placeholder="Ask something about cybersecurity..."
-                        >
+                            placeholder="Ask CyberStudy AI something..."
+                            rows="2"></textarea>
 
-                        <button id="aiSend">
+                        <button id="sendAI" class="send-button">
                             SEND →
                         </button>
 
@@ -281,638 +422,818 @@
                 </div>
 
 
-                <!-- EXTERNAL LEARNING -->
+                <aside class="ai-side-panel">
 
-                <div class="learning-links">
+                    <h3>Study Tools</h3>
 
-                    <div class="link-card web-card">
+                    <button class="tool-button" data-go="ciphers">
+                        🔐 Cipher Lab
+                    </button>
 
-                        <div class="link-icon">🌐</div>
+                    <button class="tool-button" data-go="labs">
+                        🧪 Practice Labs
+                    </button>
 
-                        <div>
-                            <p class="red-label">LIVE WEB RESEARCH</p>
-                            <h3>Explore Cybersecurity Online</h3>
+                    <button class="tool-button" data-go="games">
+                        🕵 Cyber Games
+                    </button>
 
-                            <p>
-                                Search the web for current cybersecurity
-                                concepts, news and technical resources.
-                            </p>
-                        </div>
+                    <button class="tool-button" data-go="materials">
+                        📚 Materials
+                    </button>
 
-                        <button onclick="openWebSearch()">
-                            OPEN WEB →
-                        </button>
+                    <div class="ai-note">
 
-                    </div>
+                        <strong>Study Mode</strong>
 
-
-                    <div class="link-card youtube-card">
-
-                        <div class="link-icon">▶</div>
-
-                        <div>
-                            <p class="red-label">VIDEO LEARNING</p>
-                            <h3>Cybersecurity on YouTube</h3>
-
-                            <p>
-                                Find tutorials, lectures and demonstrations
-                                related to cybersecurity.
-                            </p>
-                        </div>
-
-                        <button onclick="openYouTubeSearch()">
-                            OPEN YOUTUBE →
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUICK MODULES -->
-
-                <div class="section-heading">
-
-                    <div>
-                        <p class="red-label">LEARNING MODULES</p>
-                        <h2>Start Learning</h2>
-                    </div>
-
-                </div>
-
-                <div class="module-grid">
-
-                    <div class="module-card" onclick="showSection('ciphers')">
-                        <div class="module-number">01</div>
-                        <div class="module-icon">⌘</div>
-                        <h3>Cryptography</h3>
                         <p>
-                            Learn classical and modern encryption concepts.
+                            Personal questions and unrelated
+                            conversations are outside my purpose.
                         </p>
-                        <span>EXPLORE →</span>
+
                     </div>
 
-                    <div class="module-card" onclick="showSection('games')">
-                        <div class="module-number">02</div>
-                        <div class="module-icon">◈</div>
-                        <h3>Cyber Games</h3>
-                        <p>
-                            Practice cybersecurity through interactive games.
-                        </p>
-                        <span>PLAY →</span>
-                    </div>
+                </aside>
 
-                    <div class="module-card" onclick="showSection('materials')">
-                        <div class="module-number">03</div>
-                        <div class="module-icon">▤</div>
-                        <h3>Study Materials</h3>
-                        <p>
-                            Review important cybersecurity concepts.
-                        </p>
-                        <span>STUDY →</span>
-                    </div>
+            </div>
 
-                </div>
-
-            </section>
+        </section>
 
 
-            <!-- ================= CIPHERS ================= -->
+        <!-- =====================================================
+             CIPHER LAB
+        ====================================================== -->
 
-            <section id="ciphersSection" class="content-section">
+        <section id="ciphers" class="content-section">
 
-                <div class="page-heading">
-                    <p class="red-label">CRYPTOGRAPHY LAB</p>
+            <div class="section-heading">
 
-                    <h1>
-                        Cipher <span>Techniques</span>
-                    </h1>
-
+                <div>
+                    <span class="section-tag">CRYPTOGRAPHY LABORATORY</span>
+                    <h1>Cipher Lab</h1>
                     <p>
-                        Study classical cryptographic techniques and
-                        experiment with their basic concepts.
+                        Explore classical cryptography through
+                        interactive demonstrations.
                     </p>
                 </div>
 
+            </div>
 
-                <div class="cipher-grid">
 
-                    <!-- CAESAR -->
+            <div class="cipher-grid">
 
-                    <div class="cipher-card">
+                <div class="cipher-card"
+                     data-cipher="caesar">
 
-                        <div class="cipher-top">
-                            <span class="cipher-number">01</span>
-                            <span class="cipher-tag">SUBSTITUTION</span>
-                        </div>
+                    <span class="cipher-number">01</span>
+                    <h3>Caesar Cipher</h3>
+                    <p>
+                        A substitution cipher that shifts letters
+                        by a fixed number.
+                    </p>
+                    <button>OPEN LAB →</button>
+
+                </div>
+
+
+                <div class="cipher-card"
+                     data-cipher="hill">
+
+                    <span class="cipher-number">02</span>
+                    <h3>Hill Cipher</h3>
+                    <p>
+                        A matrix-based classical encryption
+                        technique.
+                    </p>
+                    <button>LEARN →</button>
+
+                </div>
+
+
+                <div class="cipher-card"
+                     data-cipher="playfair">
+
+                    <span class="cipher-number">03</span>
+                    <h3>Playfair Cipher</h3>
+                    <p>
+                        Encrypts pairs of letters using a
+                        5×5 matrix.
+                    </p>
+                    <button>LEARN →</button>
+
+                </div>
+
+
+                <div class="cipher-card"
+                     data-cipher="mono">
+
+                    <span class="cipher-number">04</span>
+                    <h3>Monoalphabetic</h3>
+                    <p>
+                        Each plaintext letter maps to another
+                        fixed character.
+                    </p>
+                    <button>LEARN →</button>
+
+                </div>
+
+
+                <div class="cipher-card"
+                     data-cipher="vigenere">
+
+                    <span class="cipher-number">05</span>
+                    <h3>Vigenère Cipher</h3>
+                    <p>
+                        Uses a repeating keyword to perform
+                        polyalphabetic substitution.
+                    </p>
+                    <button>OPEN LAB →</button>
+
+                </div>
+
+
+                <div class="cipher-card"
+                     data-cipher="otp">
+
+                    <span class="cipher-number">06</span>
+                    <h3>Vernam / OTP</h3>
+                    <p>
+                        One-Time Pad encryption using a
+                        secret key.
+                    </p>
+                    <button>LEARN →</button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CIPHER WORKSPACE -->
+
+            <div class="cipher-workspace">
+
+                <div class="workspace-header">
+
+                    <div>
+                        <span class="section-tag">
+                            INTERACTIVE DEMO
+                        </span>
 
                         <h2>Caesar Cipher</h2>
+                    </div>
 
-                        <p>
-                            A substitution cipher that shifts each letter
-                            by a fixed number of positions.
-                        </p>
+                    <span class="workspace-status">
+                        ● LAB ACTIVE
+                    </span>
 
-                        <div class="cipher-example">
-                            <span>HELLO</span>
-                            <b>→</b>
-                            <span>KHOOR</span>
-                        </div>
+                </div>
 
-                        <button onclick="openCipher('Caesar Cipher')">
-                            LEARN TECHNIQUE →
-                        </button>
+
+                <div class="cipher-controls">
+
+                    <div class="field">
+
+                        <label>Message</label>
+
+                        <input
+                            id="cipherText"
+                            type="text"
+                            placeholder="Enter your message"
+                            value="CYBERSTUDY"
+                        >
 
                     </div>
 
+                    <div class="field">
 
-                    <!-- HILL -->
+                        <label>Shift</label>
 
-                    <div class="cipher-card">
-
-                        <div class="cipher-top">
-                            <span class="cipher-number">02</span>
-                            <span class="cipher-tag">MATRIX</span>
-                        </div>
-
-                        <h2>Hill Cipher</h2>
-
-                        <p>
-                            A polygraphic substitution cipher based on
-                            matrix multiplication.
-                        </p>
-
-                        <div class="cipher-example">
-                            <span>MATRIX</span>
-                            <b>×</b>
-                            <span>KEY</span>
-                        </div>
-
-                        <button onclick="openCipher('Hill Cipher')">
-                            LEARN TECHNIQUE →
-                        </button>
-
-                    </div>
-
-
-                    <!-- PLAYFAIR -->
-
-                    <div class="cipher-card">
-
-                        <div class="cipher-top">
-                            <span class="cipher-number">03</span>
-                            <span class="cipher-tag">DIGRAPH</span>
-                        </div>
-
-                        <h2>Playfair Cipher</h2>
-
-                        <p>
-                            Encrypts pairs of letters using a
-                            5×5 key matrix.
-                        </p>
-
-                        <div class="cipher-example">
-                            <span>MEET</span>
-                            <b>→</b>
-                            <span>KEY</span>
-                        </div>
-
-                        <button onclick="openCipher('Playfair Cipher')">
-                            LEARN TECHNIQUE →
-                        </button>
-
-                    </div>
-
-
-                    <!-- MONOALPHABETIC -->
-
-                    <div class="cipher-card">
-
-                        <div class="cipher-top">
-                            <span class="cipher-number">04</span>
-                            <span class="cipher-tag">SUBSTITUTION</span>
-                        </div>
-
-                        <h2>Monoalphabetic</h2>
-
-                        <p>
-                            Each plaintext letter is consistently mapped
-                            to another ciphertext letter.
-                        </p>
-
-                        <div class="cipher-example">
-                            <span>A → Q</span>
-                            <b>•</b>
-                            <span>B → W</span>
-                        </div>
-
-                        <button onclick="openCipher('Monoalphabetic Cipher')">
-                            LEARN TECHNIQUE →
-                        </button>
-
-                    </div>
-
-
-                    <!-- VIGENERE -->
-
-                    <div class="cipher-card">
-
-                        <div class="cipher-top">
-                            <span class="cipher-number">05</span>
-                            <span class="cipher-tag">POLYALPHABETIC</span>
-                        </div>
-
-                        <h2>Vigenère Cipher</h2>
-
-                        <p>
-                            Uses a keyword to perform multiple Caesar-style
-                            shifts across the message.
-                        </p>
-
-                        <div class="cipher-example">
-                            <span>TEXT</span>
-                            <b>+</b>
-                            <span>KEY</span>
-                        </div>
-
-                        <button onclick="openCipher('Vigenere Cipher')">
-                            LEARN TECHNIQUE →
-                        </button>
-
-                    </div>
-
-
-                    <!-- OTP -->
-
-                    <div class="cipher-card">
-
-                        <div class="cipher-top">
-                            <span class="cipher-number">06</span>
-                            <span class="cipher-tag">THEORETICAL</span>
-                        </div>
-
-                        <h2>One-Time Pad</h2>
-
-                        <p>
-                            Uses a truly random key that is as long as
-                            the plaintext.
-                        </p>
-
-                        <div class="cipher-example">
-                            <span>TEXT</span>
-                            <b>⊕</b>
-                            <span>KEY</span>
-                        </div>
-
-                        <button onclick="openCipher('One-Time Pad')">
-                            LEARN TECHNIQUE →
-                        </button>
+                        <input
+                            id="cipherShift"
+                            type="number"
+                            value="3"
+                            min="0"
+                            max="25"
+                        >
 
                     </div>
 
                 </div>
 
 
-                <!-- CIPHER LAB -->
+                <div class="cipher-actions">
 
-                <div class="cipher-lab">
+                    <button id="encryptButton"
+                            class="primary-button">
+                        ENCRYPT
+                    </button>
 
-                    <div class="lab-header">
-                        <div>
-                            <p class="red-label">PRACTICAL LAB</p>
-                            <h2>Caesar Cipher Demonstration</h2>
-                        </div>
-
-                        <span class="lab-status">
-                            DEMO
-                        </span>
-                    </div>
-
-                    <div class="lab-controls">
-
-                        <div>
-                            <label>Message</label>
-
-                            <input
-                                id="cipherInput"
-                                type="text"
-                                placeholder="Enter text..."
-                            >
-                        </div>
-
-                        <div>
-                            <label>Shift</label>
-
-                            <input
-                                id="cipherShift"
-                                type="number"
-                                value="3"
-                                min="0"
-                                max="25"
-                            >
-                        </div>
-
-                        <button onclick="runCaesar()">
-                            ENCRYPT
-                        </button>
-
-                    </div>
-
-                    <div class="cipher-result">
-
-                        <span>OUTPUT</span>
-
-                        <strong id="cipherOutput">
-                            Waiting for input...
-                        </strong>
-
-                    </div>
+                    <button id="decryptButton"
+                            class="secondary-button">
+                        DECRYPT
+                    </button>
 
                 </div>
 
-            </section>
+
+                <div class="cipher-result">
+
+                    <span>OUTPUT</span>
+
+                    <strong id="cipherOutput">
+                        FBERUVWGB
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
-            <!-- ================= GAMES ================= -->
+        <!-- =====================================================
+             CYBER LABS
+        ====================================================== -->
 
-            <section id="gamesSection" class="content-section">
+        <section id="labs" class="content-section">
 
-                <div class="page-heading">
+            <div class="section-heading">
 
-                    <p class="red-label">PRACTICAL CYBER TRAINING</p>
+                <div>
+                    <span class="section-tag">
+                        HANDS-ON PRACTICE
+                    </span>
 
-                    <h1>
-                        Cyber <span>Games</span>
-                    </h1>
+                    <h1>Cybersecurity Labs</h1>
 
                     <p>
-                        Improve cybersecurity knowledge through
+                        Learn by solving safe simulated
+                        cybersecurity problems.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="labs-grid">
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">01</div>
+
+                    <div>
+
+                        <span class="difficulty beginner">
+                            BEGINNER
+                        </span>
+
+                        <h3>Password Guardian</h3>
+
+                        <p>
+                            Analyze password characteristics
+                            and identify weak practices.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="password">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">02</div>
+
+                    <div>
+
+                        <span class="difficulty beginner">
+                            BEGINNER
+                        </span>
+
+                        <h3>Base64 Decoder</h3>
+
+                        <p>
+                            Learn the difference between
+                            encoding and encryption.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="base64">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">03</div>
+
+                    <div>
+
+                        <span class="difficulty intermediate">
+                            INTERMEDIATE
+                        </span>
+
+                        <h3>Phishing Detective</h3>
+
+                        <p>
+                            Inspect a simulated email and
+                            identify suspicious indicators.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="phishing">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">04</div>
+
+                    <div>
+
+                        <span class="difficulty intermediate">
+                            INTERMEDIATE
+                        </span>
+
+                        <h3>Hash Detective</h3>
+
+                        <p>
+                            Understand hashing and identify
+                            common hash formats.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="hash">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">05</div>
+
+                    <div>
+
+                        <span class="difficulty advanced">
+                            ADVANCED
+                        </span>
+
+                        <h3>Incident Response</h3>
+
+                        <p>
+                            Decide what action should happen
+                            first during a security incident.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="incident">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <div class="lab-icon">06</div>
+
+                    <div>
+
+                        <span class="difficulty advanced">
+                            ADVANCED
+                        </span>
+
+                        <h3>CIA Scenario</h3>
+
+                        <p>
+                            Analyze real-world style situations
+                            involving confidentiality, integrity
+                            and availability.
+                        </p>
+
+                        <button class="lab-start"
+                                data-lab="cia">
+                            START LAB →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CYBER GAMES
+        ====================================================== -->
+
+        <section id="games" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-tag">
+                        LEARN THROUGH INVESTIGATION
+                    </span>
+
+                    <h1>Cyber Games</h1>
+
+                    <p>
+                        Turn cybersecurity concepts into
                         interactive challenges.
                     </p>
 
                 </div>
 
+            </div>
 
-                <div class="games-grid">
 
-                    <div class="game-card">
+            <div class="games-grid">
 
-                        <div class="game-icon">⌨</div>
+                <div class="game-card">
 
-                        <span class="game-level">BEGINNER</span>
-
-                        <h2>Cyber Quiz</h2>
-
-                        <p>
-                            Test your understanding of basic cybersecurity
-                            concepts.
-                        </p>
-
-                        <button onclick="startQuiz()">
-                            START QUIZ →
-                        </button>
-
+                    <div class="game-top">
+                        <span>GAME 01</span>
+                        <strong>⌁</strong>
                     </div>
 
+                    <h2>Cipher Breaker</h2>
 
-                    <div class="game-card">
+                    <p>
+                        A secret message has been intercepted.
+                        Identify the cipher and recover the message.
+                    </p>
 
-                        <div class="game-icon">🔐</div>
-
-                        <span class="game-level">BEGINNER</span>
-
-                        <h2>Crack the Cipher</h2>
-
-                        <p>
-                            Identify the cipher and decode the secret message.
-                        </p>
-
-                        <button onclick="startCipherGame()">
-                            START GAME →
-                        </button>
-
+                    <div class="game-info">
+                        <span>CRYPTOGRAPHY</span>
+                        <span>★ 100 XP</span>
                     </div>
 
-
-                    <div class="game-card">
-
-                        <div class="game-icon">🕵</div>
-
-                        <span class="game-level">INTERMEDIATE</span>
-
-                        <h2>Cyber Detective</h2>
-
-                        <p>
-                            Investigate clues and identify the possible
-                            cybersecurity incident.
-                        </p>
-
-                        <button onclick="startDetective()">
-                            INVESTIGATE →
-                        </button>
-
-                    </div>
-
-
-                    <div class="game-card">
-
-                        <div class="game-icon">🛡</div>
-
-                        <span class="game-level">INTERMEDIATE</span>
-
-                        <h2>Threat Hunter</h2>
-
-                        <p>
-                            Find suspicious activity hidden inside
-                            simulated system events.
-                        </p>
-
-                        <button onclick="startThreatHunter()">
-                            HUNT THREATS →
-                        </button>
-
-                    </div>
+                    <button class="game-start"
+                            data-game="cipher">
+                        START MISSION
+                    </button>
 
                 </div>
 
-            </section>
 
+                <div class="game-card">
 
-            <!-- ================= MATERIALS ================= -->
+                    <div class="game-top">
+                        <span>GAME 02</span>
+                        <strong>◉</strong>
+                    </div>
 
-            <section id="materialsSection" class="content-section">
-
-                <div class="page-heading">
-
-                    <p class="red-label">KNOWLEDGE BASE</p>
-
-                    <h1>
-                        Study <span>Materials</span>
-                    </h1>
+                    <h2>Phishing Detective</h2>
 
                     <p>
-                        Build your cybersecurity fundamentals step by step.
+                        An employee received a suspicious email.
+                        Investigate the evidence and identify the attack.
+                    </p>
+
+                    <div class="game-info">
+                        <span>SOCIAL ENGINEERING</span>
+                        <span>★ 150 XP</span>
+                    </div>
+
+                    <button class="game-start"
+                            data-game="phishing">
+                        START MISSION
+                    </button>
+
+                </div>
+
+
+                <div class="game-card">
+
+                    <div class="game-top">
+                        <span>GAME 03</span>
+                        <strong>◆</strong>
+                    </div>
+
+                    <h2>Threat Hunter</h2>
+
+                    <p>
+                        Examine a simulated incident and determine
+                        what type of threat has occurred.
+                    </p>
+
+                    <div class="game-info">
+                        <span>THREAT ANALYSIS</span>
+                        <span>★ 200 XP</span>
+                    </div>
+
+                    <button class="game-start"
+                            data-game="threat">
+                        START MISSION
+                    </button>
+
+                </div>
+
+
+                <div class="game-card">
+
+                    <div class="game-top">
+                        <span>GAME 04</span>
+                        <strong>▣</strong>
+                    </div>
+
+                    <h2>Incident Commander</h2>
+
+                    <p>
+                        A cyber incident has been detected.
+                        Choose the correct response strategy.
+                    </p>
+
+                    <div class="game-info">
+                        <span>INCIDENT RESPONSE</span>
+                        <span>★ 250 XP</span>
+                    </div>
+
+                    <button class="game-start"
+                            data-game="incident">
+                        START MISSION
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MATERIALS
+        ====================================================== -->
+
+        <section id="materials" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-tag">
+                        KNOWLEDGE BASE
+                    </span>
+
+                    <h1>Study Materials</h1>
+
+                    <p>
+                        Build your cybersecurity knowledge
+                        from fundamentals to advanced concepts.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="materials-grid">
+
+                <div class="material-card">
+
+                    <span>01 / BEGINNER</span>
+
+                    <h3>Cybersecurity Fundamentals</h3>
+
+                    <ul>
+                        <li>CIA Triad</li>
+                        <li>Threats & Vulnerabilities</li>
+                        <li>Authentication</li>
+                        <li>Access Control</li>
+                    </ul>
+
+                    <button class="material-button">
+                        STUDY TOPIC
+                    </button>
+
+                </div>
+
+
+                <div class="material-card">
+
+                    <span>02 / INTERMEDIATE</span>
+
+                    <h3>Network Security</h3>
+
+                    <ul>
+                        <li>Firewalls</li>
+                        <li>IDS / IPS</li>
+                        <li>VPN</li>
+                        <li>Network Attacks</li>
+                    </ul>
+
+                    <button class="material-button">
+                        STUDY TOPIC
+                    </button>
+
+                </div>
+
+
+                <div class="material-card">
+
+                    <span>03 / INTERMEDIATE</span>
+
+                    <h3>Cryptography</h3>
+
+                    <ul>
+                        <li>Symmetric Encryption</li>
+                        <li>Asymmetric Encryption</li>
+                        <li>Hashing</li>
+                        <li>Digital Signatures</li>
+                    </ul>
+
+                    <button class="material-button">
+                        STUDY TOPIC
+                    </button>
+
+                </div>
+
+
+                <div class="material-card">
+
+                    <span>04 / ADVANCED</span>
+
+                    <h3>Security Operations</h3>
+
+                    <ul>
+                        <li>Incident Response</li>
+                        <li>Digital Forensics</li>
+                        <li>Threat Intelligence</li>
+                        <li>SOC Operations</li>
+                    </ul>
+
+                    <button class="material-button">
+                        STUDY TOPIC
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROGRESS
+        ====================================================== -->
+
+        <section id="progress" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-tag">
+                        LEARNING ANALYTICS
+                    </span>
+
+                    <h1>My Progress</h1>
+
+                    <p>
+                        Track your cybersecurity learning journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-overview">
+
+                <div class="progress-main">
+
+                    <span>OVERALL PROGRESS</span>
+
+                    <strong id="progressPercent">
+                        0%
+                    </strong>
+
+                    <div class="progress-bar">
+                        <div id="progressFill"></div>
+                    </div>
+
+                    <p>
+                        Complete labs and challenges to increase
+                        your progress.
                     </p>
 
                 </div>
 
 
-                <div class="materials-grid">
+                <div class="progress-stats">
 
-                    <article class="material-card">
+                    <div>
+                        <span>XP</span>
+                        <strong id="xpValue">0</strong>
+                    </div>
 
-                        <span>01 / FUNDAMENTALS</span>
+                    <div>
+                        <span>LABS</span>
+                        <strong id="labsCompleted">0</strong>
+                    </div>
 
-                        <h2>Cybersecurity Basics</h2>
-
-                        <p>
-                            CIA Triad, authentication, authorization,
-                            vulnerabilities, threats and risk.
-                        </p>
-
-                        <ul>
-                            <li>Confidentiality</li>
-                            <li>Integrity</li>
-                            <li>Availability</li>
-                            <li>Threats & Vulnerabilities</li>
-                        </ul>
-
-                    </article>
-
-
-                    <article class="material-card">
-
-                        <span>02 / CRYPTOGRAPHY</span>
-
-                        <h2>Cryptography</h2>
-
-                        <p>
-                            Understand how information can be protected
-                            using encryption and cryptographic algorithms.
-                        </p>
-
-                        <ul>
-                            <li>Classical Ciphers</li>
-                            <li>Symmetric Encryption</li>
-                            <li>Asymmetric Encryption</li>
-                            <li>Hashing</li>
-                        </ul>
-
-                    </article>
-
-
-                    <article class="material-card">
-
-                        <span>03 / NETWORK SECURITY</span>
-
-                        <h2>Network Security</h2>
-
-                        <p>
-                            Learn the fundamentals of protecting devices,
-                            networks and communications.
-                        </p>
-
-                        <ul>
-                            <li>Firewalls</li>
-                            <li>IDS / IPS</li>
-                            <li>VPN</li>
-                            <li>Network Attacks</li>
-                        </ul>
-
-                    </article>
-
-
-                    <article class="material-card">
-
-                        <span>04 / THREATS</span>
-
-                        <h2>Cyber Threats</h2>
-
-                        <p>
-                            Explore common attack categories and understand
-                            how defenders respond.
-                        </p>
-
-                        <ul>
-                            <li>Phishing</li>
-                            <li>Malware</li>
-                            <li>Ransomware</li>
-                            <li>Social Engineering</li>
-                        </ul>
-
-                    </article>
-
-
-                    <article class="material-card">
-
-                        <span>05 / DIGITAL FORENSICS</span>
-
-                        <h2>Digital Forensics</h2>
-
-                        <p>
-                            Learn how investigators collect and analyse
-                            digital evidence.
-                        </p>
-
-                        <ul>
-                            <li>Evidence</li>
-                            <li>Logs</li>
-                            <li>Incident Investigation</li>
-                            <li>Chain of Custody</li>
-                        </ul>
-
-                    </article>
-
-
-                    <article class="material-card">
-
-                        <span>06 / DEFENCE</span>
-
-                        <h2>Security Operations</h2>
-
-                        <p>
-                            Understand how security teams monitor,
-                            detect and respond to incidents.
-                        </p>
-
-                        <ul>
-                            <li>SOC</li>
-                            <li>SIEM</li>
-                            <li>Incident Response</li>
-                            <li>Threat Intelligence</li>
-                        </ul>
-
-                    </article>
+                    <div>
+                        <span>MISSIONS</span>
+                        <strong id="gamesCompleted">0</strong>
+                    </div>
 
                 </div>
 
-            </section>
-
-        </main>
-
-    </section>
+            </div>
 
 
-    <!-- ================= MODAL ================= -->
+            <div class="badges-section">
 
-    <div id="modal" class="modal hidden">
+                <span class="section-tag">ACHIEVEMENTS</span>
 
-        <div class="modal-box">
+                <h2>Badges</h2>
 
-            <button class="modal-close" onclick="closeModal()">×</button>
+                <div class="badges-grid">
 
-            <p class="red-label">CYBERSTUDY</p>
+                    <div class="badge locked" id="badgeCipher">
+                        <div>⌁</div>
+                        <strong>CIPHER NOVICE</strong>
+                        <small>Complete a cipher challenge</small>
+                    </div>
 
-            <h2 id="modalTitle">Title</h2>
+                    <div class="badge locked" id="badgeLab">
+                        <div>▣</div>
+                        <strong>LAB EXPLORER</strong>
+                        <small>Complete a practice lab</small>
+                    </div>
 
-            <div id="modalContent"></div>
+                    <div class="badge locked" id="badgeMission">
+                        <div>◆</div>
+                        <strong>CYBER DETECTIVE</strong>
+                        <small>Complete a cyber mission</small>
+                    </div>
 
-        </div>
+                    <div class="badge locked" id="badgeScholar">
+                        <div>◈</div>
+                        <strong>CYBER SCHOLAR</strong>
+                        <small>Reach 500 XP</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-card">
+
+        <button id="closeModal" class="modal-close">
+            ×
+        </button>
+
+        <span class="section-tag">CYBERSTUDY CHALLENGE</span>
+
+        <h2 id="modalTitle">
+            Challenge
+        </h2>
+
+        <div id="modalContent"></div>
 
     </div>
 
+</div>
 
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 
 </body>
 </html>
